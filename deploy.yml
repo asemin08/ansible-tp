@@ -1,5 +1,5 @@
 ---
-- name: "DDeploy an Container"
+- name: "Deploy an Container"
   hosts: all
   pre_tasks:
     - name: install dependencies
