@@ -2,7 +2,7 @@
 - name: Deploy a container
   hosts: all
   vars_files:
-    - /home/admin/Ansible/files/secrets/credentials.vault
+    - /home/admin/ansible-tp/files/secrets/credentials.vault
   pre_tasks:
     
     - name: install dependencies
