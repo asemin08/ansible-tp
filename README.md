@@ -99,3 +99,11 @@ client                     : ok=9    changed=5    unreachable=0    failed=0    s
 Sur l'instance eazytraining/client
 
 Ouvrir le port 80
+
+Pour ce point générer le clé ssh sur le admin 
+avec le
+ssh-keygen -t rsa
+
+et après le copier sur le client 
+
+ssh-copy-id admin@IP
