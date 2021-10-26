@@ -1,0 +1,40 @@
+---
+- name: "Deploy an Container"
+  hosts: all
+  pre_tasks:
+    - name: install dependencies
+      yum:
+        name: "epel-release"
+        state: "present"
+
+    - name: install dependencies
+      yum:
+        name: "git"
+        state: "present"
+
+    - name: "download Python-pip for docker module"
+      get_url:
+        url: https://bootstrap.pypa.io/pip/2.7/get-pip.py
+        dest: /tmp/get-pip.py
+    - name: "install python-pip"
+      command: python2.7 /tmp/get-pip.py
+    - name: Install docker python
+      pip: name=docker-py
+
+  tasks:
+    - name: create WebAppExemple directory
+      file:
+        path: /home/admin/WebAppExemple
+        state: directory
+    - name: git clone webserver files
+      git:
+        repo: 'https://github.com/diranetafen/static-website-example.git'
+        dest: /home/admin/WebAppExemple
+    - name: launch docker container"
+      docker_container:
+        name: WebAppExemple
+        image: httpd
+        ports:
+          - "80:80"
+        volumes:
+          - /home/admin/WebAppExemple/:/usr/local/apache2/htdocs/
